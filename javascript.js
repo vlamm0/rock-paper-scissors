@@ -3,7 +3,7 @@
 // computer chooses rock, paper, or scissors
 function getComputerChoice () {
     // randomly choose decimal 0-1
-    var randomDecimal = Math.random()
+    var randomDecimal = Math.random();
 
     // equally assign decimal to choices 
     if (randomDecimal < 0.33) {
@@ -13,9 +13,19 @@ function getComputerChoice () {
         return "paper";
     }
     else {
-        return "scissors"
+        return "scissors";
     }
-
 }
 
-console.log(getComputerChoice())
+// player chooses rock, paper, or scissors
+function getHumanChoice () {
+
+    var playerChoice;
+    // loops until valid choice
+    while (playerChoice !== "rock" && playerChoice !== "paper" && playerChoice !== "scissors") {
+        playerChoice = prompt("Choose rock, paper, or scissors:");
+        playerChoice = playerChoice.toLowerCase().trim();
+    } 
+    
+    return playerChoice;
+}
