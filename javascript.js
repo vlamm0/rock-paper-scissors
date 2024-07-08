@@ -45,7 +45,16 @@ function playRound (user, cpu) {
     }
 }
 
+// plays the game five times and prints the score at the end
+function playGame () {
+    for (let i = 0; i < 5; i++) {
+        playRound(getHumanChoice(), getComputerChoice());
+    }
+
+    console.log(`PLAYER : ${humanScore}\nCPU    : ${computerScore}`);
+}
+
 var humanScore = 0;
 var computerScore = 0;
 
-playRound(getHumanChoice(), getComputerChoice());
+playGame();
