@@ -54,7 +54,10 @@ function playGame () {
     console.log(`PLAYER : ${humanScore}\nCPU    : ${computerScore}`);
 }
 
+
+// initialize score
 var humanScore = 0;
 var computerScore = 0;
 
+// initialize game
 playGame();
