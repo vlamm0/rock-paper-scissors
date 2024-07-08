@@ -3,7 +3,7 @@
 // computer chooses rock, paper, or scissors
 function getComputerChoice () {
     // randomly choose decimal 0-1
-    var randomDecimal = Math.random();
+    let randomDecimal = Math.random();
 
     // equally assign decimal to choices 
     if (randomDecimal < 0.33) {
@@ -20,7 +20,7 @@ function getComputerChoice () {
 // player chooses rock, paper, or scissors
 function getHumanChoice () {
 
-    var playerChoice;
+    let playerChoice;
     // loops until valid choice
     while (playerChoice !== "rock" && playerChoice !== "paper" && playerChoice !== "scissors") {
         playerChoice = prompt("Choose rock, paper, or scissors:");
@@ -29,3 +29,23 @@ function getHumanChoice () {
     
     return playerChoice;
 }
+
+// determines who wins and increases their respective score
+function playRound (user, cpu) {
+    if (user === cpu) {
+        console.log("TIE!");
+    }
+    else if ((user == "rock" && cpu == "scissors") || (user == "paper" && cpu == "rock") || (user == "scissors" && cpu == "paper")) {
+        console.log(`You win! ${user} beats ${cpu}`);
+        humanScore++;
+    }
+    else {
+        console.log(`You lose! ${cpu} beats ${user}`);
+        computerScore++;
+    }
+}
+
+var humanScore = 0;
+var computerScore = 0;
+
+playRound(getHumanChoice(), getComputerChoice());
