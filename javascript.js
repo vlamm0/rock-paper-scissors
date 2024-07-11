@@ -84,13 +84,13 @@ body.addEventListener("click", (e) => {
 
     switch(target.id) {
         case 'rock':
-            alert("rock")
+            playRound('rock', getComputerChoice())
             break;
         case 'paper':
-            alert("paper")
+            playRound("paper", getComputerChoice())
             break;
         case 'scissors':
-            alert("scissors")
+            playRound("scissors", getComputerChoice())
             break;
         
     }
