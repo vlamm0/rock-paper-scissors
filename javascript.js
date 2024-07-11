@@ -67,6 +67,7 @@ const options = ["rock", "paper", "scissors"]
 // create buttons
 for (let i = 0; i < 3; i++) {
     const btn = document.createElement("button");
+    btn.setAttribute("id", options[i])
     btn.textContent = options[i];
     body.appendChild(btn)
 }
@@ -76,6 +77,24 @@ body.style.border = "2px solid black"
 body.style.display = "flex"
 body.style.justifyContent = "center"
 body.style.gap = "5px"
+
+// even listener for all properties of body
+body.addEventListener("click", (e) => {
+    let target = e.target;
+
+    switch(target.id) {
+        case 'rock':
+            alert("rock")
+            break;
+        case 'paper':
+            alert("paper")
+            break;
+        case 'scissors':
+            alert("scissors")
+            break;
+        
+    }
+})
 
 // initialize game
 // while (true) {
