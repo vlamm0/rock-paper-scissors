@@ -33,16 +33,32 @@ function getHumanChoice () {
 // determines who wins and increases their respective score
 function playRound (user, cpu) {
     if (user === cpu) {
-        console.log("TIE!");
+        //console.log("TIE!");
+        commentary.textContent = "TIE!"
     }
     else if ((user == "rock" && cpu == "scissors") || (user == "paper" && cpu == "rock") || (user == "scissors" && cpu == "paper")) {
-        console.log(`You win! ${user} beats ${cpu}`);
-        humanScore++;
+        //console.log(`You win! ${user} beats ${cpu}`);
+        commentary.textContent = `You win! ${user} beats ${cpu}`
+        getScore("+");
     }
     else {
-        console.log(`You lose! ${cpu} beats ${user}`);
-        computerScore++;
+        //console.log(`You lose! ${cpu} beats ${user}`);
+        commentary.textContent = `You lose! ${cpu} beats ${user}`
+        getScore("-");
     }
+}
+
+function getScore (change="") {
+    if (change == "+") {
+        humanScore++;
+    } 
+    else if (change == "-") {
+        computerScore++;
+    } else {
+        computerScore = 0;
+        humanScore = 0;
+    }
+    //score.textContent = `PLAYER : ${humanScore}\nCPU    : ${computerScore}`
 }
 
 // plays the game five times and prints the score at the end
@@ -57,13 +73,22 @@ function playGame () {
 
 
 // initialize score
-var humanScore = 0;
-var computerScore = 0;
+var computerScore;
+var humanScore
+getScore()
 
 // setup body/options
 const body = document.querySelector("body");
-const btnContainer = document.querySelector(".button_container")
+const btnContainer = document.createElement("div")
+btnContainer.setAttribute("class", "button_container")
+const scoreDisplay = document.createElement("div")
+//scoreDisplay.textContent = "score"
+const commentary = document.createElement("div")
+const score = document.createElement("div")
+
+//const btnContainer = document.querySelector(".button_container")
 const options = ["rock", "paper", "scissors"]
+
 
 // create buttons
 for (let i = 0; i < 3; i++) {
@@ -78,6 +103,11 @@ btnContainer.style.border = "2px solid black"
 btnContainer.style.display = "flex"
 btnContainer.style.justifyContent = "center"
 btnContainer.style.gap = "5px"
+
+score.style.border = "2px solid black"
+//score.textContent = `PLAYER : ${humanScore}\nCPU    : ${computerScore}`
+commentary.style.border = "2px solid black"
+commentary.textContent = "score"
 
 // even listener for all properties of body
 btnContainer.addEventListener("click", (e) => {
@@ -94,9 +124,12 @@ btnContainer.addEventListener("click", (e) => {
             playRound("scissors", getComputerChoice())
             break;
         
-    }
+    } score.textContent = `PLAYER : ${humanScore}\nCPU    : ${computerScore}`
 })
-
+scoreDisplay.appendChild(commentary)
+scoreDisplay.appendChild(score)
+body.appendChild(btnContainer)
+body.appendChild(scoreDisplay)
 // initialize game
 // while (true) {
 //     playGame();
