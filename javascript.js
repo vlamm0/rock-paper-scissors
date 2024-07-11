@@ -17,19 +17,6 @@ function getComputerChoice () {
     }
 }
 
-// player chooses rock, paper, or scissors
-function getHumanChoice () {
-
-    let playerChoice;
-    // loops until valid choice
-    while (playerChoice !== "rock" && playerChoice !== "paper" && playerChoice !== "scissors") {
-        playerChoice = prompt("Choose rock, paper, or scissors:");
-        playerChoice = playerChoice.toLowerCase().trim();
-    } 
-    
-    return playerChoice;
-}
-
 // determines who wins and increases their respective score
 function playRound (user, cpu) {
     if (user === cpu) {
@@ -58,19 +45,16 @@ function getScore (change="") {
         computerScore = 0;
         humanScore = 0;
     }
-    //score.textContent = `PLAYER : ${humanScore}\nCPU    : ${computerScore}`
+    if (humanScore >= 5 || computerScore >= 5) {
+        commentary.textContent = "";
+        score.textContent = ""
+        if (computerScore > humanScore) {
+            var winner = "COMPUTER WINS!";
+        } else {var winner = "PLAYER WINS!"}
+        alert(winner)
+        computerScore = 0;
+        humanScore = 0;}
 }
-
-// plays the game five times and prints the score at the end
-function playGame () {
-    // for (let i = 0; i < 5; i++) {
-    //     playRound(getHumanChoice(), getComputerChoice());
-    // }
-    playRound(getHumanChoice(), getComputerChoice());
-
-    console.log(`PLAYER : ${humanScore}\nCPU    : ${computerScore}`);
-}
-
 
 // initialize score
 var computerScore;
@@ -82,11 +66,8 @@ const body = document.querySelector("body");
 const btnContainer = document.createElement("div")
 btnContainer.setAttribute("class", "button_container")
 const scoreDisplay = document.createElement("div")
-//scoreDisplay.textContent = "score"
 const commentary = document.createElement("div")
 const score = document.createElement("div")
-
-//const btnContainer = document.querySelector(".button_container")
 const options = ["rock", "paper", "scissors"]
 
 
@@ -99,17 +80,18 @@ for (let i = 0; i < 3; i++) {
 }
 
 // organize buttons using body flex
-btnContainer.style.border = "2px solid black"
 btnContainer.style.display = "flex"
 btnContainer.style.justifyContent = "center"
 btnContainer.style.gap = "5px"
+btnContainer.style.marginTop = "25px"
+btnContainer.style.marginBottom = "25px"
 
-score.style.border = "2px solid black"
-//score.textContent = `PLAYER : ${humanScore}\nCPU    : ${computerScore}`
-commentary.style.border = "2px solid black"
-commentary.textContent = "score"
+// oragnize score and commentary 
+scoreDisplay.style.display = "flex"
+scoreDisplay.style.flexDirection = "column"
+scoreDisplay.style.alignItems = "center"
 
-// even listener for all properties of body
+// even listener for all buttons, plays round and updates score
 btnContainer.addEventListener("click", (e) => {
     let target = e.target;
 
@@ -126,14 +108,12 @@ btnContainer.addEventListener("click", (e) => {
         
     } score.textContent = `PLAYER : ${humanScore}\nCPU    : ${computerScore}`
 })
+
 scoreDisplay.appendChild(commentary)
 scoreDisplay.appendChild(score)
 body.appendChild(btnContainer)
 body.appendChild(scoreDisplay)
-// initialize game
-// while (true) {
-//     playGame();
-// }
+
 
 
 
