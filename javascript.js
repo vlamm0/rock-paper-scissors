@@ -47,9 +47,10 @@ function playRound (user, cpu) {
 
 // plays the game five times and prints the score at the end
 function playGame () {
-    for (let i = 0; i < 5; i++) {
-        playRound(getHumanChoice(), getComputerChoice());
-    }
+    // for (let i = 0; i < 5; i++) {
+    //     playRound(getHumanChoice(), getComputerChoice());
+    // }
+    playRound(getHumanChoice(), getComputerChoice());
 
     console.log(`PLAYER : ${humanScore}\nCPU    : ${computerScore}`);
 }
@@ -59,5 +60,27 @@ function playGame () {
 var humanScore = 0;
 var computerScore = 0;
 
+// setup body/options
+const body = document.querySelector("body");
+const options = ["rock", "paper", "scissors"]
+
+// create buttons
+for (let i = 0; i < 3; i++) {
+    const btn = document.createElement("button");
+    btn.textContent = options[i];
+    body.appendChild(btn)
+}
+
+// organize buttons using body flex
+body.style.border = "2px solid black"
+body.style.display = "flex"
+body.style.justifyContent = "center"
+body.style.gap = "5px"
+
 // initialize game
-playGame();
+// while (true) {
+//     playGame();
+// }
+
+
+
