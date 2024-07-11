@@ -62,6 +62,7 @@ var computerScore = 0;
 
 // setup body/options
 const body = document.querySelector("body");
+const btnContainer = document.querySelector(".button_container")
 const options = ["rock", "paper", "scissors"]
 
 // create buttons
@@ -69,17 +70,17 @@ for (let i = 0; i < 3; i++) {
     const btn = document.createElement("button");
     btn.setAttribute("id", options[i])
     btn.textContent = options[i];
-    body.appendChild(btn)
+    btnContainer.appendChild(btn)
 }
 
 // organize buttons using body flex
-body.style.border = "2px solid black"
-body.style.display = "flex"
-body.style.justifyContent = "center"
-body.style.gap = "5px"
+btnContainer.style.border = "2px solid black"
+btnContainer.style.display = "flex"
+btnContainer.style.justifyContent = "center"
+btnContainer.style.gap = "5px"
 
 // even listener for all properties of body
-body.addEventListener("click", (e) => {
+btnContainer.addEventListener("click", (e) => {
     let target = e.target;
 
     switch(target.id) {
